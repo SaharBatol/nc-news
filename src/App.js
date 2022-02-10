@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
+import "./styles/App.scss";
 import User from "./components/User";
 import Articles from "./components/Articles";
 import EachArticle from "./components/EachArticle";
@@ -26,7 +26,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <h1>NC News</h1>
+        <h1>NC NEWS</h1>
         {loginHandler()}
       </div>
     </BrowserRouter>
