@@ -52,8 +52,9 @@ const Articles = () => {
                   <h3>Topic: {article.topic}</h3>
                   <h3>Comments: {article.comment_count}</h3>
                   <Votes
+                    component_name={"articles"}
                     votes={article.votes}
-                    article_id={article.article_id}
+                    component_id={article.article_id}
                   />
                   <p id="date">Posted at: {shortDate(article.created_at)}</p>
                 </li>

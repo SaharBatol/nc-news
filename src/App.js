@@ -26,7 +26,10 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <h1>NC NEWS</h1>
+        <header>
+          <h1>NC NEWS</h1>
+        </header>
+
         {loginHandler()}
       </div>
     </BrowserRouter>
