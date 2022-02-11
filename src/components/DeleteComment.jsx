@@ -2,17 +2,17 @@ import React, { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { deleteComment } from "../utils/utils";
 
-const DeleteComment = ({ setDeletedCommentId, comment_id, author }) => {
-  const { currentUser } = useContext(UserContext);
+const DeleteComment = ({ setDeletedComment, comment_id, author }) => {
+  const { loggedInUser } = useContext(UserContext);
 
   const deleteHandler = () => {
     deleteComment(comment_id);
-    setDeletedCommentId(comment_id);
+    setDeletedComment(true);
   };
 
   const isCurrentUserCheck = () => {
-    if (author === currentUser.username) {
-      return <button onClick={() => deletedHandler(comment_id)}>Delete</button>;
+    if (author === loggedInUser.username) {
+      return <button onClick={() => deleteHandler(comment_id)}>Delete</button>;
     } else {
       return <></>;
     }

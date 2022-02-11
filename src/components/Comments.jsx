@@ -1,24 +1,26 @@
 import React, { useEffect } from "react";
 import { useState } from "react/cjs/react.development";
 import { shortDate } from "../utils/shortDate";
-import { deleteComment, getCommentsById } from "../utils/utils";
+import { getCommentsById } from "../utils/utils";
 import CreateComment from "./CreateComment";
+import DeleteComment from "./DeleteComment";
+import Votes from "./Votes";
 
 const Comments = ({ article_id }) => {
   const [articleComments, setArticleComments] = useState([]);
-  const [deletedCommentId, setDeletedCommentId] = useState(0);
+  const [deletedComment, setDeletedComment] = useState(false);
 
   useEffect(() => {
     getCommentsById(article_id).then((res) => {
       setArticleComments(res);
-      setDeletedCommentId(0);
+      setDeletedComment(false);
     });
-  }, [deletedCommentId]);
+  }, [deletedComment, setArticleComments]);
 
   return (
     <div>
       <CreateComment
-        setDeletedCommentId={setDeletedCommentId}
+        setArticleComments={setArticleComments}
         article_id={article_id}
       />
       <ul>
@@ -28,11 +30,15 @@ const Comments = ({ article_id }) => {
               <h3>{comment.author}</h3>
               <p>{comment.body}</p>
               <div>
-                <a>Votes: {comment.votes}</a>
+                <Votes
+                  component_name={"comments"}
+                  votes={comment.votes}
+                  component_id={comment.comment_id}
+                />
                 <a>Posted on: {shortDate(comment.created_at)}</a>
               </div>
-              <deleteComment
-                setDeletedCommentId={setDeletedCommentId}
+              <DeleteComment
+                setDeletedComment={setDeletedComment}
                 setArticleComments={setArticleComments}
                 author={comment.author}
                 comment_id={comment.comment_id}

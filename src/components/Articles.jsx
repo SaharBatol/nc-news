@@ -13,15 +13,15 @@ const Articles = () => {
   const [articleList, setArticleList] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState("");
   const [selectedSortBy, setSelectedSortBy] = useState("created_at");
-  const [selectedOrderBy, setSelectedOrderBy] = useState("DESC");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedOrderBy, setSelectedOrderBy] = useState("ASC");
+  const [currentPage, setCurrentPage] = useState({ page: 1, maxPage: 1 });
 
   useEffect(() => {
     getArticles(
       selectedTopic,
       selectedSortBy,
       selectedOrderBy,
-      currentPage
+      currentPage.page
     ).then((res) => {
       setArticleList(res);
     });
@@ -29,35 +29,47 @@ const Articles = () => {
 
   return (
     <div>
-      <Topics
+      <div className="filter">
+        <Topics
+          selectedTopic={selectedTopic}
+          setSelectedTopic={setSelectedTopic}
+        />
+        <SortBy setSelectedSortBy={setSelectedSortBy} />
+        <OrderBy setSelectedOrderBy={setSelectedOrderBy} />
+      </div>
+
+      {articleList.length ? (
+        <div>
+          <p>{`Page: ${currentPage.page} / ${currentPage.maxPage}`}</p>
+          <ul>
+            {articleList.map((article) => {
+              return (
+                <li key={article.article_id}>
+                  <Link to={`/articles/${article.article_id}`}>
+                    <h2>{article.title}</h2>
+                    <h2>{article.author}</h2>
+                  </Link>
+                  <h3>Topic: {article.topic}</h3>
+                  <h3>Comments: {article.comment_count}</h3>
+                  <Votes
+                    votes={article.votes}
+                    article_id={article.article_id}
+                  />
+                  <p id="date">Posted at: {shortDate(article.created_at)}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
+
+      <PageCount
         selectedTopic={selectedTopic}
-        setSelectedTopic={setSelectedTopic}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
       />
-      <SortBy
-        selectedSortBy={selectedSortBy}
-        setSelectedSortBy={setSelectedSortBy}
-      />
-      <OrderBy
-        selectedOrderBy={selectedOrderBy}
-        setSelectedOrderBy={setSelectedOrderBy}
-      />
-      <ul>
-        {articleList.map((article) => {
-          return (
-            <li key={article.article_id}>
-              <Link to={`/articles/${article.article_id}`}>
-                <h2>{article.title}</h2>
-                <h2>{article.author}</h2>
-              </Link>
-              <h3>Topic: {article.topic}</h3>
-              <h3>Comments: {article.comment_count}</h3>
-              <Votes votes={article.votes} article_id={article.article_id} />
-              <p id="date">Posted at: {shortDate(article.created_at)}</p>
-            </li>
-          );
-        })}
-      </ul>
-      <PageCount setCurrentPage={setCurrentPage} />
     </div>
   );
 };

@@ -1,21 +1,15 @@
 import React from "react";
 
-const OrderBy = ({ selectedOrderBy, setSelectedOrderBy }) => {
-  const orderByHandler = () => {
-    switch (true) {
-      case selectedOrderBy === "ASC":
-        setSelectedOrderBy("DESC");
-        break;
-      case selectedOrderBy === "DESC":
-        setSelectedOrderBy("ASC");
-        break;
-    }
+const OrderBy = ({ setSelectedOrderBy }) => {
+  const orderByHandler = (event) => {
+    setSelectedOrderBy(event.target.value);
   };
   return (
-    <div className="dropdown">
-      <button className="dropbutton" onClick={orderByHandler}>
-        {selectedOrderBy}
-      </button>
+    <div className="orderby">
+      <select onChange={orderByHandler} id="order">
+        <option value="ASC">Ascending</option>
+        <option value="DESC">Descending</option>
+      </select>
     </div>
   );
 };

@@ -47,16 +47,20 @@ export const postCommentByArticleId = (article_id, currentUser, comment) => {
     });
 };
 
-export const patchArticleVotes = (article_id) => {
-  return newsApi.patch(`/articles/${article_id}`, { inc_votes: 1 });
+export const patchComponentVotes = (component_name, component_id) => {
+  return newsApi.patch(`/${component_name}/${component_id}`, {
+    inc_votes: 1,
+  });
 };
 
 export const deleteComment = (comment_id) => {
   return newsApi.delete(`comments/${comment_id}`);
 };
 
-export const getArticlesCount = () => {
-  return newsApi.get(`/articles?limit=1844674407370955161`).then((res) => {
-    return res.data.articles.length;
-  });
+export const getArticlesCount = (topic) => {
+  return newsApi
+    .get(`/articles`, { params: { limit: 1844674407370955161, topic } })
+    .then((res) => {
+      return res.data.articles.length;
+    });
 };

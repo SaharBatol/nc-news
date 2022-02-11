@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { patchArticleVotes } from "../utils/utils";
+import { patchComponentVotes } from "../utils/utils";
 
-const Votes = ({ votes, article_id }) => {
+const Votes = ({ component_name, votes, component_id }) => {
   const [votesChange, setVotesChange] = useState(0);
 
   const votesHandler = () => {
     setVotesChange((currentValue) => currentValue + 1);
-    patchArticleVotes(article_id);
+    patchComponentVotes(component_name, component_id);
   };
 
   return <button onClick={votesHandler}>Votes: {votes + votesChange}</button>;

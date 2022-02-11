@@ -17,7 +17,7 @@ const EachArticle = () => {
   return (
     <>
       <div>
-        <h3>Topic {article.topic}</h3>
+        <h3>Topic: {article.topic}</h3>
         <h2>{article.title}</h2>
         <p>{article.body}</p>
         <a id="votes">Votes: {article.votes}</a>

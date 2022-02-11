@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react/cjs/react.development";
 import { getTopics } from "../utils/utils";
 
-const Topics = ({ setSelectedTopic, selectedTopic }) => {
+const Topics = ({ setSelectedTopic }) => {
   const [topics, setTopics] = useState([]);
 
   useEffect(() => {
@@ -11,25 +11,22 @@ const Topics = ({ setSelectedTopic, selectedTopic }) => {
     });
   }, []);
 
-  const topicHandler = (topic) => {
-    setSelectedTopic(topic);
+  const topicHandler = (event) => {
+    setSelectedTopic(event.target.value);
   };
 
   return (
-    <div className="dropdown">
-      <button className="dropbutton">
-        {selectedTopic.length ? selectedTopic : "All"}
-      </button>
-      <div className="dropdown-content">
-        <a onClick={() => setSelectedTopic("")}>All</a>
+    <div className="topic">
+      <select onChange={topicHandler} name="" id="">
+        <option value="">All</option>
         {topics.map((topic) => {
           return (
-            <a key={topic.slug} onClick={() => topicHandler(topic.slug)}>
+            <option key={topic.slug} value={topic.slug}>
               {topic.slug}
-            </a>
+            </option>
           );
         })}
-      </div>
+      </select>
     </div>
   );
 };
