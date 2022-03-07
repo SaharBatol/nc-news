@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useState } from "react/cjs/react.development";
+import { useEffect, useState } from "react";
+
 import { getTopics } from "../utils/utils";
 
 const Topics = ({ setSelectedTopic }) => {
