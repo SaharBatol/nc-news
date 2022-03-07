@@ -1,10 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useState } from "react/cjs/react.development";
 import { shortDate } from "../utils/shortDate";
 import { getArticleByArticleId } from "../utils/utils";
 import Comments from "./Comments";
-import Votes from "./Votes";
 import { UserContext } from "../contexts/UserContext";
 import { Link, useNavigate } from "react-router-dom";
 

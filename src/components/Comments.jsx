@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { shortDate } from "../utils/shortDate";
 
 import { getCommentsById } from "../utils/utils";
