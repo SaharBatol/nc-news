@@ -24,7 +24,13 @@ const Login = () => {
       <h2 id="welcome">WELCOME</h2>
       <form onSubmit={loginHandler}>
         <label>
-          <input id="username" type="text" required placeholder="Username" />
+          <input
+            id="username"
+            type="text"
+            required
+            placeholder="Username"
+            value="tickle122"
+          />
         </label>
         <button>Login</button>
       </form>
