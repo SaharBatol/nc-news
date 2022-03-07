@@ -8,24 +8,19 @@
   width: 40vw;
   margin: auto;
   margin-top: 18.5vh;
+  margin-bottom: 1rem;
   border: 5px solid white;
   border-radius: 1rem;
 
   label {
     width: 80%;
+    margin: auto;
   }
   input {
-    padding: 0.5rem 0rem;
+    padding: 0.5rem 1rem;
     width: 100%;
+    margin: 1rem auto;
     border-radius: 0.5rem;
-  }
-  button {
-    padding: 1rem 2rem;
-    background-color: black;
-    color: white;
-    border: 0.15rem solid white;
-    border-radius: 0.5rem;
-    margin: 1.5rem 0rem;
   }
 }
 
@@ -37,8 +32,36 @@ form {
   width: 100%;
 }
 
-#welcome {
+#register {
   margin-bottom: 2rem;
   font-size: 3rem;
   color: rgb(185, 233, 255);
+}
+
+.button {
+  width: 8rem;
+  padding: 1rem 2rem;
+  background-color: black;
+  border: 0.15rem solid white;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  margin: 1rem 0;
+  color: white;
+}
+
+@media (max-width: 1000px) {
+  .form-wrapper {
+    width: 70vw;
+  }
+}
+
+@media (max-width: 550px) {
+  .form-wrapper {
+    width: 90vw;
+  }
+}
+@media (min-width: 1500px) {
+  .form-wrapper {
+    width: 40rem;
+  }
 }

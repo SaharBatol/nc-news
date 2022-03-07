@@ -19,9 +19,14 @@ export const getArticles = (topic, sort_by, order_by, p) => {
 };
 
 export const getUser = (username) => {
-  return newsApi.get(`/users/${username}`).then((res) => {
-    return res.data.user;
-  });
+  return newsApi
+    .get(`/users/${username}`)
+    .then((res) => {
+      return res.data.user;
+    })
+    .catch(() => {
+      alert("Username does not exist, please try again");
+    });
 };
 
 export const getArticleByArticleId = (article_id) => {
@@ -47,10 +52,18 @@ export const postCommentByArticleId = (article_id, currentUser, comment) => {
     });
 };
 
-export const patchComponentVotes = (component_name, component_id) => {
-  return newsApi.patch(`/${component_name}/${component_id}`, {
-    inc_votes: 1,
-  });
+export const patchComponentVotes = (
+  component_name,
+  component_id,
+  vote_change
+) => {
+  return newsApi
+    .patch(`/${component_name}/${component_id}`, {
+      inc_votes: vote_change,
+    })
+    .then((res) => {
+      console.log(res);
+    });
 };
 
 export const deleteComment = (comment_id) => {

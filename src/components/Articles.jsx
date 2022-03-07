@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react/cjs/react.development";
+import { UserContext } from "../contexts/UserContext";
 import { shortDate } from "../utils/shortDate";
 import { getArticles } from "../utils/utils";
 import OrderBy from "./OrderBy";
@@ -10,11 +11,24 @@ import Topics from "./Topics";
 import Votes from "./Votes";
 
 const Articles = () => {
+  const { setLoggedInUser } = useContext(UserContext);
   const [articleList, setArticleList] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState("");
   const [selectedSortBy, setSelectedSortBy] = useState("created_at");
   const [selectedOrderBy, setSelectedOrderBy] = useState("ASC");
   const [currentPage, setCurrentPage] = useState({ page: 1, maxPage: 1 });
+
+  let navigate = useNavigate();
+
+  const routeChange = (path) => {
+    navigate(path);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("loggedInUser");
+    setLoggedInUser({});
+    routeChange("/");
+  };
 
   useEffect(() => {
     getArticles(
@@ -30,6 +44,9 @@ const Articles = () => {
   return (
     <div>
       <div className="filter">
+        <Link to="/" onClick={handleLogout} id="logout">
+          Logout
+        </Link>
         <Topics
           selectedTopic={selectedTopic}
           setSelectedTopic={setSelectedTopic}
@@ -40,12 +57,15 @@ const Articles = () => {
 
       {articleList.length ? (
         <div>
-          <p>{`Page: ${currentPage.page} / ${currentPage.maxPage}`}</p>
-          <ul>
+          <p id="pages">{`Page: ${currentPage.page} / ${currentPage.maxPage}`}</p>
+          <ul className="articles-wrapper">
             {articleList.map((article) => {
               return (
                 <li key={article.article_id}>
-                  <Link to={`/articles/${article.article_id}`}>
+                  <Link
+                    className="article-titles"
+                    to={`/articles/${article.article_id}`}
+                  >
                     <h2>{article.title}</h2>
                     <h2>{article.author}</h2>
                   </Link>

@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import "./styles/App.scss";
 import User from "./components/User";
 import Articles from "./components/Articles";
@@ -27,7 +27,9 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <header>
-          <h1>NC NEWS</h1>
+          <Link to="/">
+            <h1>NC NEWS</h1>
+          </Link>
         </header>
 
         {loginHandler()}

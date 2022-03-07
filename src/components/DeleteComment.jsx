@@ -12,7 +12,14 @@ const DeleteComment = ({ setDeletedComment, comment_id, author }) => {
 
   const isCurrentUserCheck = () => {
     if (author === loggedInUser.username) {
-      return <button onClick={() => deleteHandler(comment_id)}>Delete</button>;
+      return (
+        <button
+          className="delete-btn"
+          onClick={() => deleteHandler(comment_id)}
+        >
+          Delete
+        </button>
+      );
     } else {
       return <></>;
     }

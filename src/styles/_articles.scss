@@ -1,35 +1,119 @@
-div {
+h3 {
   color: white;
+  margin-bottom: 1rem;
 }
 h2 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: rgb(143, 0, 0);
+  color: rgb(196, 193, 247);
   font-weight: bolder;
   font-size: x-large;
+  margin-top: 1rem;
+}
+.article-titles {
+  margin: 2rem 1rem;
+  display: inline-block;
 }
 .filter {
-  width: 45vw;
-  margin-left: 50vw;
+  width: 50vw;
+  margin: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  flex-wrap: wrap;
+  #logout {
+    width: 7rem;
+    padding: 1rem 2rem;
+    background-color: black;
+    border: 0.15rem solid rgb(185, 233, 255);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    margin: 1rem 0;
+  }
 }
 
 a {
   text-decoration: none;
+  color: rgb(185, 233, 255);
 }
 
-li {
-  margin-bottom: 2rem;
+.articles-wrapper {
+  display: grid;
+  width: 80vw;
+  margin: auto;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-gap: 4rem;
+
+  li {
+    background-color: black;
+    text-align: center;
+    align-self: center;
+    border: 0.15rem solid white;
+    border-radius: 0.5rem;
+    height: 26.5rem;
+    width: 100%;
+    // align-items: center;
+    list-style-type: none;
+  }
+}
+
+.votes-container {
   display: flex;
-  flex-direction: column;
+  width: 80%;
+  // margin: auto;
   align-items: center;
+  justify-content: space-around;
+  margin: 2rem auto;
+}
+p {
+  color: rgb(255, 255, 255);
+  margin: 1rem 0rem;
+  font-weight: bolder;
+}
+
+#pages {
+  margin: 2rem 2rem;
+}
+.page-numbers {
+  width: 20%;
+  margin: 1rem auto;
+  // background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  button {
+    padding: 0.6rem 1rem;
+    background-color: black;
+    color: white;
+    border: 0.15rem solid white;
+    border-radius: 0.5rem;
+  }
+}
+button {
+  padding: 1rem 2rem;
   background-color: black;
-  margin-left: 1rem;
-  margin-right: 1rem;
-  padding: 1rem;
-  text-align: center;
+  color: white;
+  border: 0.15rem solid white;
+  border-radius: 0.5rem;
+}
+
+@media (max-width: 920px) {
+  .page-numbers {
+    width: 25%;
+  }
+  .articles-wrapper {
+    display: inline-block;
+    width: 90%;
+    // background-color: red;
+    margin: 0rem 0rem 1rem 5%;
+
+    li {
+      margin-bottom: 1rem;
+    }
+  }
+}
+@media (max-width: 740px) {
+  .page-numbers {
+    width: 35%;
+  }
 }

@@ -10,7 +10,12 @@ const Login = () => {
     event.preventDefault();
     let username = event.target.username.value;
     getUser(username).then((res) => {
-      setLoggedInUser(res);
+      if (res) {
+        setLoggedInUser(res);
+        localStorage.setItem("loggedInUser", JSON.stringify(res));
+      } else {
+        event.target.username.value = "";
+      }
     });
   };
 
@@ -19,11 +24,13 @@ const Login = () => {
       <h2 id="welcome">WELCOME</h2>
       <form onSubmit={loginHandler}>
         <label>
-          <input id="username" type="text" required />
+          <input id="username" type="text" required placeholder="Username" />
         </label>
         <button>Login</button>
       </form>
-      <Link to="/register">Don't have an account? Create one here</Link>
+      <p>
+        Don't have account? Click <Link to="/register">here</Link>
+      </p>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 import { shortDate } from "../utils/shortDate";
+
 import { getCommentsById } from "../utils/utils";
 import CreateComment from "./CreateComment";
 import DeleteComment from "./DeleteComment";
@@ -27,6 +28,7 @@ const Comments = ({ article_id }) => {
         {articleComments.map((comment) => {
           return (
             <li key={comment.comment_id}>
+              <div className="line"></div>
               <h3>{comment.author}</h3>
               <p>{comment.body}</p>
               <div>
@@ -43,6 +45,7 @@ const Comments = ({ article_id }) => {
                 author={comment.author}
                 comment_id={comment.comment_id}
               />
+              <div className="line"></div>
             </li>
           );
         })}
