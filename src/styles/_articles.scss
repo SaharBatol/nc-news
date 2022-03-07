@@ -20,15 +20,6 @@ h2 {
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
-  #logout {
-    width: 7rem;
-    padding: 1rem 2rem;
-    background-color: black;
-    border: 0.15rem solid rgb(185, 233, 255);
-    border-radius: 0.5rem;
-    text-decoration: none;
-    margin: 1rem 0;
-  }
 }
 
 a {
@@ -104,7 +95,6 @@ button {
   .articles-wrapper {
     display: inline-block;
     width: 90%;
-    // background-color: red;
     margin: 0rem 0rem 1rem 5%;
 
     li {
